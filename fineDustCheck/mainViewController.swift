@@ -34,7 +34,7 @@ class mainViewcontroller: UIViewController, CLLocationManagerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-  
+        getLocationUsagePermission()
         // 델리게이트 설정
         locationManager.delegate = self
         // 거리 정확도 설정
@@ -44,6 +44,7 @@ class mainViewcontroller: UIViewController, CLLocationManagerDelegate {
         
         // 아이폰 설정에서의 위치 서비스가 켜진 상태라면
         if CLLocationManager.locationServicesEnabled() {
+        
             print("위치 서비스 On 상태")
             locationManager.startUpdatingLocation() //위치 정보 받아오기 시작
             print(locationManager.location?.coordinate)
@@ -51,36 +52,7 @@ class mainViewcontroller: UIViewController, CLLocationManagerDelegate {
             print("위치 서비스 Off 상태")
         }
         
-        let coord = locationManager.location?.coordinate
-        LocationInfo.shared.latitude = coord?.latitude
-        LocationInfo.shared.longitude = coord?.longitude
-
-        TM(url: Constant.shared.kakaoUrl, longitude: coord!.longitude, latitude: coord!.latitude) { userLocation in
-            self.getNearbyMsrstn(url: Constant.shared.stationUrl, tmX: userLocation.longitude, tmY: userLocation.latitude ) { station in
-                print(Constant.shared.stationUrl)
-                DispatchQueue.main.async {
-                    self.stationLabel.text = "측정 장소 : \(station)"
-                }
-                self.getfinedust(url: Constant.shared.dustUrl, stationName: station) { pm,pmGrade,time in
-                    DispatchQueue.main.async {
-                        switch pmGrade {
-                        case "1" :
-                            self.PMGradeImage.image = UIImage(named: "smile.png")
-                        case "2" :
-                            self.PMGradeImage.image = UIImage(named: "normal.png")
-                        case "3" :
-                            self.PMGradeImage.image = UIImage(named: "bad.png")
-                        case "4" :
-                            self.PMGradeImage.image = UIImage(named: "evil.png")
-                        default :
-                            print("Unkown")
-                        }
-                        self.dataTimeLabel.text = "측정 시간 : \(time)"
-                        self.PMLabel.text = "\(pm)㎍/㎥"
-                    }
-                }
-            }
-        }
+     
         
     }
     
@@ -138,12 +110,11 @@ class mainViewcontroller: UIViewController, CLLocationManagerDelegate {
     // 측정 장소 가져오기
     func getNearbyMsrstn(url: String, tmX: Double, tmY: Double, handler: @escaping(String) -> Void) {
         let parameters: Parameters = [
-            "serviceKey" : Constant.shared.serviceKey,
             "tmX" : tmX,
             "tmY" : tmY,
             "returnType" : "json"
         ]
-        
+
         let alamo = AF.request(url, method: .get,parameters: parameters, encoding: URLEncoding.default)
         alamo.responseJSON() { response in
             debugPrint(response)
@@ -151,7 +122,11 @@ class mainViewcontroller: UIViewController, CLLocationManagerDelegate {
             case .success(let value):
                 let json = JSON(value)
                 let stationName = json["response"]["body"]["items"][0]["stationName"].string!
-                LocationInfo.shared.stationName = stationName
+                var stations = json["response"]["body"]["items"].arrayValue
+                var stationNameData = stations.last?["stationName"].string!
+           
+                print("장소이름\(stationNameData)")
+                LocationInfo.shared.stationName = stationNameData
                 handler(stationName)
             case .failure(_):
                 let alert = UIAlertController(title: nil, message: "네트워크를 다시 확인해주세요", preferredStyle: .alert)
@@ -165,12 +140,12 @@ class mainViewcontroller: UIViewController, CLLocationManagerDelegate {
     //미세먼지 농도
     func getfinedust(url: String, stationName: String, handler: @escaping(String, String, String) -> Void) {
         let parameters: Parameters = [
-            "serviceKey" : Constant.shared.serviceKey,
             "stationName" : stationName,
             "dataTerm" : "DAILY",
             "returnType" : "json"
         ]
         
+     
         let alamo = AF.request(url, method: .get,parameters: parameters, encoding: URLEncoding.default)
         alamo.responseJSON() { response in
             debugPrint(response)
@@ -193,6 +168,12 @@ class mainViewcontroller: UIViewController, CLLocationManagerDelegate {
             }
         }
     }
+    func getLocationUsagePermission() {
+          //location4
+          self.locationManager.requestWhenInUseAuthorization()
+
+      }
+
 
     //위치 정보
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -200,10 +181,42 @@ class mainViewcontroller: UIViewController, CLLocationManagerDelegate {
         case .authorizedAlways, .authorizedWhenInUse:
             print("GPS 권한 설정됨")
             self.locationManager.startUpdatingLocation() // 중요!
+            let coord = self.locationManager.location?.coordinate
+            LocationInfo.shared.latitude = coord?.latitude
+            LocationInfo.shared.longitude = coord?.longitude
+
+            self.TM(url: Constant.shared.kakaoUrl, longitude: coord!.longitude, latitude: coord!.latitude) { userLocation in
+                self.getNearbyMsrstn(url: Constant.shared.stationUrl, tmX: userLocation.longitude, tmY: userLocation.latitude ) { station in
+                    DispatchQueue.main.async {
+                        print(station)
+                        self.stationLabel.text = "측정 장소 : \(station)"
+                    }
+                    self.getfinedust(url: Constant.shared.dustUrl, stationName: station) { pm,pmGrade,time in
+                        DispatchQueue.main.async {
+                            switch pmGrade {
+                            case "1" :
+                                self.PMGradeImage.image = UIImage(named: "smile.png")
+                            case "2" :
+                                self.PMGradeImage.image = UIImage(named: "normal.png")
+                            case "3" :
+                                self.PMGradeImage.image = UIImage(named: "bad.png")
+                            case "4" :
+                                self.PMGradeImage.image = UIImage(named: "evil.png")
+                            default :
+                                print("Unkown")
+                            }
+                            self.dataTimeLabel.text = "측정 시간 : \(time)"
+                            self.PMLabel.text = "\(pm)㎍/㎥"
+                        }
+                    }
+                }
+            }
         case .restricted, .notDetermined:
             print("GPS 권한 설정되지 않음")
+            getLocationUsagePermission()
         case .denied:
             print("GPS 권한 요청 거부됨")
+            getLocationUsagePermission()
         default:
             print("GPS: Default")
         }

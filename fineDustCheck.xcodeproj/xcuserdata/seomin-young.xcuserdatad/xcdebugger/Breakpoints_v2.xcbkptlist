@@ -14,73 +14,9 @@
             filePath = "fineDustCheck/mainViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "currentLocation(url:longitude:latitude:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B4054561-DEDD-4618-88CD-DDBAE19BE12A"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "fineDustCheck/mainViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
-            landmarkName = "getNearbyMsrstn(url:tmX:tmY:handler:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "B4054561-DEDD-4618-88CD-DDBAE19BE12A - 5963697f7f6f367e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "fineDustCheck.mainViewcontroller.getNearbyMsrstn(url: Swift.String, tmX: Swift.Double, tmY: Swift.Double, handler: (Swift.String) -&gt; ()) -&gt; ()"
-                  moduleName = "fineDustCheck"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/seomin-young/Desktop/fineDustCheck/fineDustCheck/mainViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "148"
-                  endingLineNumber = "148"
-                  offsetFromSymbolStart = "436">
-               </Location>
-               <Location
-                  uuid = "B4054561-DEDD-4618-88CD-DDBAE19BE12A - 5963697f7f6f367e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "fineDustCheck.mainViewcontroller.getNearbyMsrstn(url: Swift.String, tmX: Swift.Double, tmY: Swift.Double, handler: (Swift.String) -&gt; ()) -&gt; ()"
-                  moduleName = "fineDustCheck"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/seomin-young/Desktop/fineDustCheck/fineDustCheck/mainViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "148"
-                  endingLineNumber = "148"
-                  offsetFromSymbolStart = "556">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "51E9BCDE-19B9-4CAC-A7C7-305F768A9BDC"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "fineDustCheck/mainViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
-            landmarkName = "getNearbyMsrstn(url:tmX:tmY:handler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -94,42 +30,10 @@
             filePath = "fineDustCheck/mainViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
             landmarkName = "getfinedust(url:stationName:handler:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "4F850864-E371-4B08-BB3C-DBA1160E28BB - 83344a5c73a9ad75"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Any, Alamofire.AFError&gt;) -&gt; () in fineDustCheck.mainViewcontroller.getfinedust(url: Swift.String, stationName: Swift.String, handler: (Swift.String, Swift.String, Swift.String) -&gt; ()) -&gt; ()"
-                  moduleName = "fineDustCheck"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/seomin-young/Desktop/fineDustCheck/fineDustCheck/mainViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "184"
-                  endingLineNumber = "184"
-                  offsetFromSymbolStart = "2800">
-               </Location>
-               <Location
-                  uuid = "4F850864-E371-4B08-BB3C-DBA1160E28BB - 83344a5c73a9ad56"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Any, Alamofire.AFError&gt;) -&gt; () in fineDustCheck.mainViewcontroller.getfinedust(url: Swift.String, stationName: Swift.String, handler: (Swift.String, Swift.String, Swift.String) -&gt; ()) -&gt; ()"
-                  moduleName = "fineDustCheck"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/seomin-young/Desktop/fineDustCheck/fineDustCheck/mainViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "183"
-                  endingLineNumber = "183"
-                  offsetFromSymbolStart = "2160">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -142,42 +46,10 @@
             filePath = "fineDustCheck/mainViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "190"
-            endingLineNumber = "190"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
             landmarkName = "getfinedust(url:stationName:handler:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "981A1D50-C21D-4949-AE14-AC47259D9969 - 83344a5c73a9ae5e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Any, Alamofire.AFError&gt;) -&gt; () in fineDustCheck.mainViewcontroller.getfinedust(url: Swift.String, stationName: Swift.String, handler: (Swift.String, Swift.String, Swift.String) -&gt; ()) -&gt; ()"
-                  moduleName = "fineDustCheck"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/seomin-young/Desktop/fineDustCheck/fineDustCheck/mainViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "191"
-                  endingLineNumber = "191"
-                  offsetFromSymbolStart = "3268">
-               </Location>
-               <Location
-                  uuid = "981A1D50-C21D-4949-AE14-AC47259D9969 - 83344a5c73a9ae5e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Any, Alamofire.AFError&gt;) -&gt; () in fineDustCheck.mainViewcontroller.getfinedust(url: Swift.String, stationName: Swift.String, handler: (Swift.String, Swift.String, Swift.String) -&gt; ()) -&gt; ()"
-                  moduleName = "fineDustCheck"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/seomin-young/Desktop/fineDustCheck/fineDustCheck/mainViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "191"
-                  endingLineNumber = "191"
-                  offsetFromSymbolStart = "3324">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -190,9 +62,41 @@
             filePath = "fineDustCheck/mainViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "173"
-            endingLineNumber = "173"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
             landmarkName = "getfinedust(url:stationName:handler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "986B2EB0-07DE-4797-8D76-30886073E420"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "fineDustCheck/mainViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
+            landmarkName = "locationManager(_:didChangeAuthorization:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BB43A9B4-0E75-4BE8-8BC5-00B7BDD82D84"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "fineDustCheck/mainViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
+            landmarkName = "locationManager(_:didChangeAuthorization:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
