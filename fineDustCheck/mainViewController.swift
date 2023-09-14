@@ -42,18 +42,6 @@ class mainViewcontroller: UIViewController, CLLocationManagerDelegate {
         // 사용자에게 허용 받기 alert 띄우기
         locationManager.requestWhenInUseAuthorization()
         
-        // 아이폰 설정에서의 위치 서비스가 켜진 상태라면
-        if CLLocationManager.locationServicesEnabled() {
-        
-            print("위치 서비스 On 상태")
-            locationManager.startUpdatingLocation() //위치 정보 받아오기 시작
-            print(locationManager.location?.coordinate)
-        } else {
-            print("위치 서비스 Off 상태")
-        }
-        
-     
-        
     }
     
     // 현재장소 정보
@@ -62,14 +50,13 @@ class mainViewcontroller: UIViewController, CLLocationManagerDelegate {
         let headers:HTTPHeaders = ["Authorization" : Constant.shared.kakaoKey]
         let parameters: Parameters = ["x" : longitude, "y" : latitude, "output_coord" : "TM"]
         let alamo = AF.request(Constant.shared.kakaoUrls, method: .get,parameters: parameters, encoding: URLEncoding.queryString ,headers: headers)
-        alamo.responseJSON() { response in
+        alamo.responseData() { response in
             debugPrint(response)
             switch response.result {
              
             case .success(let value):
                 let json = JSON(value)
                 let documents = json["documents"].arrayValue
-                
                 result.currentLongitude = documents[0]["x"].double
                 result.currentLatitude = documents[0]["y"].double
             case .failure(_):
@@ -89,7 +76,7 @@ class mainViewcontroller: UIViewController, CLLocationManagerDelegate {
         let parameters: Parameters = ["x" : longitude, "y" : latitude, "output_coord" : "TM"]
         
         let alamo = AF.request(url, method: .get,parameters: parameters, encoding: URLEncoding.queryString ,headers: headers)
-        alamo.responseJSON() { response in
+        alamo.responseData() { response in
             debugPrint(response)
             switch response.result {
              
@@ -114,18 +101,17 @@ class mainViewcontroller: UIViewController, CLLocationManagerDelegate {
             "tmY" : tmY,
             "returnType" : "json"
         ]
-
+        
         let alamo = AF.request(url, method: .get,parameters: parameters, encoding: URLEncoding.default)
-        alamo.responseJSON() { response in
+        alamo.responseData() { response in
             debugPrint(response)
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
                 let stationName = json["response"]["body"]["items"][0]["stationName"].string!
-                var stations = json["response"]["body"]["items"].arrayValue
-                var stationNameData = stations.last?["stationName"].string!
-           
-                print("장소이름\(stationNameData)")
+                let stations = json["response"]["body"]["items"].arrayValue
+                let stationNameData = stations.last?["stationName"].string! ?? stationName
+                print("stationNameData\(stationNameData)")
                 LocationInfo.shared.stationName = stationNameData
                 handler(stationName)
             case .failure(_):
@@ -147,7 +133,7 @@ class mainViewcontroller: UIViewController, CLLocationManagerDelegate {
         
      
         let alamo = AF.request(url, method: .get,parameters: parameters, encoding: URLEncoding.default)
-        alamo.responseJSON() { response in
+        alamo.responseData() { response in
             debugPrint(response)
             switch response.result {
             case .success(let value):
@@ -155,10 +141,10 @@ class mainViewcontroller: UIViewController, CLLocationManagerDelegate {
                 let pm10Value = json["response"]["body"]["items"][0]["pm10Value"].string!
                 let pm10GradeValue = json["response"]["body"]["items"][0]["pm10Grade"].string!
                 let dataTime = json["response"]["body"]["items"][0]["dataTime"].string!
-                
                 LocationInfo.shared.pmGradeValue = pm10GradeValue
                 LocationInfo.shared.dataTime = dataTime
                 LocationInfo.shared.pmValue = pm10Value
+                print("결과값\(pm10GradeValue)")
                 handler(pm10Value,pm10GradeValue, dataTime)
             case .failure(_):
                 let alert = UIAlertController(title: nil, message: "네트워크를 다시 확인해주세요", preferredStyle: .alert)
@@ -188,8 +174,8 @@ class mainViewcontroller: UIViewController, CLLocationManagerDelegate {
             self.TM(url: Constant.shared.kakaoUrl, longitude: coord!.longitude, latitude: coord!.latitude) { userLocation in
                 self.getNearbyMsrstn(url: Constant.shared.stationUrl, tmX: userLocation.longitude, tmY: userLocation.latitude ) { station in
                     DispatchQueue.main.async {
-                        print(station)
-                        self.stationLabel.text = "측정 장소 : \(station)"
+                        print("stationNameData\(LocationInfo.shared.stationName)")
+                        self.stationLabel.text = "측정 장소 : \(String(describing: LocationInfo.shared.stationName))"
                     }
                     self.getfinedust(url: Constant.shared.dustUrl, stationName: station) { pm,pmGrade,time in
                         DispatchQueue.main.async {
@@ -221,8 +207,6 @@ class mainViewcontroller: UIViewController, CLLocationManagerDelegate {
             print("GPS: Default")
         }
     }
-    
-    
     
 }
 

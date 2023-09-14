@@ -17,7 +17,7 @@ class LocationInfo {
     var pmValue : String?
     var pmGradeValue: String?
     var dataTime: String?
-    var stationName: String?
+    var stationName: String = ""
  
 
     private init() { }
